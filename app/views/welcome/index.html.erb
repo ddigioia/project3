@@ -1,0 +1,14 @@
+<div class = "game">
+
+<div class = "clue">
+</div>
+
+<div class = "quiz_form">
+<%= form_tag("/", method: "get", remote: true) do %>
+    <%= text_field_tag(:answer) %>
+    <%= submit_tag("are you sure?", class: "button") %>
+<% end %>
+</div>
+
+</div>
+

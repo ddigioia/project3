@@ -1,0 +1,65 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+body {
+  height: 100%;
+  width: 100%;
+  background-image: url('wood_pattern.png');
+
+}
+
+.wrapper{
+  width:1000px;
+  height:800px;
+  margin:100px auto;
+}
+
+.clue {
+  border:10px black solid;
+  width:600px;
+  height:300px;
+  margin:200px auto 100px auto;
+  background-color: white;
+  text-align: center;
+  padding:30px;
+}
+
+.clue p {
+  font-size: 36px;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+.quiz_form{
+  width:300px;
+  margin:100px auto;
+}
+
+#answer{
+  width:300px;
+}
+
+.button{
+margin-left: 75px;
+
+}
+
+#startButton{
+  width:300px;
+  height:200px;
+  margin:300px 350px;
+}

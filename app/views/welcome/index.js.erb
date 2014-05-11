@@ -1,0 +1,82 @@
+var clueList = _.shuffle(["what do cows make?", "what makes milk?", "some other clue", "yet another clue", "again some thing that resembles a clue"]);
+var correctAnswers = ["cows", "milk", "cheese", "bread"];
+var wrongAnswerMessages = ["I'm sorry we were looking for the CORRECT answer", "You did great! except... you didn't..."];
+var rightAnswerMessages = ["I knew I was with a winner!"];
+var herAnswer = $('#answer').val();
+var submitButton = $('.button');
+var clueBox = $('.clue');
+var newClue = $("<p id='clueText'>" + clueList[0] + "</p>");
+var firstClue = $('#firstClue');
+var wrapper = $('.wrapper');
+
+
+function game(clue){  
+  $('.game').fadeOut(300);
+  $('.game').fadeIn(300);
+  $('#answer').val(''); 
+  clueBox.empty();
+  newClue.fadeIn(1000);
+  newClue.appendTo(clueBox);
+  checkAnswer(herAnswer); //this is good but why is it running even after I empty it?
+  // displayGameBoard();
+  // submitButton.click(function(){
+  //   checkAnswer()
+  // })
+};
+
+
+function returnNewWord(){
+    if (clueList.length == 0) {
+      makeTestResultsAppear();
+    } else {
+      console.log(clueList.length);
+      return clueList.pop();
+    }
+};
+
+
+
+function checkAnswer(answer){
+  console.log(answer);
+};
+
+function makeTestResultsAppear(){
+  console.log("END OF QUIZ YO");
+};
+
+function displayGameBoard(){
+  var submitButton = $('<button class = "button"></button>');
+  var answerBox = $('<input id = "answer"></input>');
+  clueBox.prependTo(wrapper);
+  newClue.appendTo(clueBox);
+  answerBox.appendTo(wrapper);
+  submitButton.appendTo(wrapper);
+  
+};
+//remember we're doing this so that we can hide the original submit button and append a new one that is rendered thru javascript. this will make it so the user doesn't click the original button again which means we've caught all the actions inside our javascript file. now we don't need to keep going back and forth from the index.html.erb to the js file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+game();
+firstClue.hide();
+
+
