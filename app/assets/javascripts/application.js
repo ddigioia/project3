@@ -17,23 +17,144 @@
 //= require underscore
 //= require_tree .
 
+var clueList = _.shuffle([]);
+var correctAnswers = [];
+var wrongAnswerMessages = [];
+var rightAnswerMessages = [];
+
 $(document).ready(function(){
   console.log('im working');
+  var userLoginButton = $('<button id="userLoginButton">User Login</button>');
+  var nonUserButton = $('<button id="nonUserButton">Who needs a user login anyway?</button>');
+  var wrapper = $('.wrapper');
+  userLoginButton.fadeIn(500);
+  nonUserButton.fadeIn(500);
+  userLoginButton.appendTo(wrapper);
+  nonUserButton.appendTo(wrapper);
   $('.game').hide();
-  
-  var startButton = $('<button id= "startButton">Click Me</button>');
-  var firstClue = $('<p id ="firstClue">First Clue</p>');
-  var clueBox = $('.clue');
-  startButton.fadeIn(500);
-  startButton.appendTo('.wrapper');
 
-  startButton.click(function(){
-    startButton.fadeOut(800);
-    $('.game').fadeIn(1000);
-    firstClue.appendTo(clueBox);
+  userLoginButton.click(function(){
+    console.log("user sign in");
+    userLoginButton.fadeOut(200);
+    nonUserButton.fadeOut(200);
   });
+
+  nonUserButton.click(function(){
+    displayQuizCreationForm()
+    userLoginButton.fadeOut(200);
+    nonUserButton.fadeOut(200);
+  });
+
+  // var firstClue = $('<p id ="firstClue">First Clue</p>');
+  // var clueBox = $('.clue');
+  // startButton.fadeIn(500);
+  // startButton.appendTo('.wrapper');
+  // startButton.click(function(){
+  //   startButton.fadeOut(800);
+    // $('.game').fadeIn(1000);
+    // firstClue.appendTo(clueBox);
+  //   displayQuizCreationForm();
+  // });
+
 
 });
 
 $(function(){ $(document).foundation(); });
+
+// function displayGameBoard(){
+//   var startButton = $('<button id= "startButton">Click Me</button>');
+//   var clueBox = $('<div class = "clue"></div>');
+//   var quizForm = $('<div class = "quiz_form"></div>');
+
+//   quizForm.appendTo(clueBox);
+// };
+
+
+function displayQuizCreationForm(){
+  var newQuizButton = $('<button id="newQuizButton">New Quiz!</button>');
+  var editQuizButton = $('<button id="editQuizButton">Edit Quiz!</button>');
+  newQuizButton.fadeIn(500);
+  editQuizButton.fadeIn(500);
+  $('.wrapper').append(newQuizButton);
+  $('.wrapper').append(editQuizButton);
+
+  newQuizButton.click(function(){
+    newQuizButton.fadeOut(200);
+    editQuizButton.fadeOut(200);
+    displayQuestionAnswerForm();
+  });
+
+  editQuizButton.click(function(){
+    newQuizButton.fadeOut(200);
+    editQuizButton.fadeOut(200);
+    console.log("this should bring them to a login page");
+  });
+
+};
+
+
+
+
+
+
+
+
+function displayQuestionAnswerForm(){
+
+  var form = $('<form action="/" method="post" id = "createQuizForm"></form>');
+  form.append('<p>First Clue</p>');
+  form.append('<input type="text" class="quizCreationInput" value="question" id="question1"/>');
+  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer1"/>');
+  form.append('<p>Second Clue</p>');
+  form.append('<input type="text" class="quizCreationInput" value="question" id="question2"/>');
+  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer2"/>');
+  form.append('<p>Third Clue</p>');
+  form.append('<input type="text" class="quizCreationInput" value="question" id="question3"/>');
+  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer3"/>');
+  form.append('<p>Fourth Clue</p>');
+  form.append('<input type="text" class="quizCreationInput" value="question" id="question4"/>');
+  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer4"/>');
+  form.append('<p>Fifth Clue</p>');
+  form.append('<input type="text" class="quizCreationInput" value="question" id="question5"/>');
+  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer5"/>');
+  form.append('<input type="submit" value="button" id="quizCreationSubmitButton" />');
+  form.fadeIn(1000);
+  $('.wrapper').append(form);
+
+  $("#quizCreationSubmitButton").click(function(){
+    submitQuiz();
+    console.log('yippeeee kai yayyyy');
+  });
+
+};
+
+
+function submitQuiz(){
+  var quizData = {
+    'question1'     :$('#question1').val(),
+    'answer1'       :$('#answer1').val(),
+    'question2'     :$('#question2').val(),
+    'answer2'       :$('#answer2').val(),
+    'question3'     :$('#question3').val(),
+    'answer3'       :$('#answer3').val(),
+    'question4'     :$('#question4').val(),
+    'answer4'       :$('#answer4').val(),
+    'question5'     :$('#question5').val(),
+    'answer5'       :$('#answer5').val()
+  };
+
+  $.ajax({
+    type      :'POST',
+    url       :'/quiz',//maybe this should be /quiz/:id
+    data      :quizData,
+    dataType  :'json',
+  }).done(function(data){
+      console.log(data);
+  });
+
+};
+
+
+
+
 

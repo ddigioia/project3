@@ -27,6 +27,8 @@ body {
   width:1000px;
   height:800px;
   margin:100px auto;
+  border: 4px black solid;
+  text-align: center;
 }
 
 .clue {
@@ -63,3 +65,40 @@ margin-left: 75px;
   height:200px;
   margin:300px 350px;
 }
+
+
+#userLoginButton{
+  width:300px;
+  height:200px;
+  margin:300px 80px;
+  display: inline-block;
+}
+
+#nonUserButton{
+  display: inline-block;
+  width:300px;
+  height:200px;
+  margin:300px 80px;
+}
+
+input#question1.quizCreationInput, input#answer1.quizCreationInput, input#question2.quizCreationInput, input#answer2.quizCreationInput, input#question3.quizCreationInput, input#answer3.quizCreationInput, input#question4.quizCreationInput, input#answer4.quizCreationInput, input#question5.quizCreationInput, input#answer5.quizCreationInput{
+  width:500px;
+  margin: 10px auto;
+}
+
+#newQuizButton{
+  width:300px;
+  height:200px;
+  margin:300px 80px;
+  display: inline-block;
+}
+
+#editQuizButton{
+  display: inline-block;
+  width:300px;
+  height:200px;
+  margin:300px 80px;
+}
+
+
+
