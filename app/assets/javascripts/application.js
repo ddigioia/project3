@@ -18,27 +18,21 @@
 //= require_tree .
 
 
-$(document).ready(function(){
-  console.log('im working');
-  $('.game').hide();
-  
-  var startButton = $('<button id= "startButton">Click Me</button>');
-  var firstClue = $('<p id ="firstClue">First Clue</p>');
-  var clueBox = $('.clue');
 
-
-
-  var clueList = ["what do cows make?", "what makes milk?", "some other clue", "yet another clue", "again some thing that resembles a clue"];
-  var correctAnswers = ["cows", "milk", "cheese", "bread"];
-  var wrongAnswerMessages = ["I'm sorry we were looking for the CORRECT answer", "You did great! except... you didn't..."];
-  var rightAnswerMessages = ["I knew I was with a winner!"];
-  var herAnswer = $('#answer').val();
-  var submitButton = $('.button');
-  var clueBox = $('.clue');
-  var newClue = $("<p id='clueText'>" + clueList[0] + "</p>");
-  var firstClue = $('#firstClue');
-  var wrapper = $('.wrapper');
-  var startButton = $('<button id= "startButton">Click Me</button>');
+var startButton = $('<button id= "startButton">Click Me</button>');
+var firstClue = $('<p id ="firstClue">First Clue</p>');
+var clueBox = $('.clue');
+var clueList = ["what do cows make?", "what makes milk?", "some other clue", "yet another clue", "again some thing that resembles a clue"];
+var correctAnswers = ["cows", "milk", "cheese", "bread"];
+var wrongAnswerMessages = ["I'm sorry we were looking for the CORRECT answer", "You did great! except... you didn't..."];
+var rightAnswerMessages = ["I knew I was with a winner!"];
+var herAnswer = $('#answer').val();
+var submitButton = $('.button');
+var clueBox = $('.clue');
+var newClue = $("<p id='clueText'>" + clueList[0] + "</p>");
+var firstClue = $('#firstClue');
+var wrapper = $('.wrapper');
+var startButton = $('<button id= "startButton">Click Me</button>');
   
 $(document).ready(function(){
   

@@ -11,8 +11,7 @@ def index
 
 end
 
-<<<<<<< Updated upstream
-=======
+
 def submitAnswer
 
   response.cache_control.replace(:no_cache => true)
@@ -24,6 +23,4 @@ def submitAnswer
 end
 
 
-
->>>>>>> Stashed changes
 end
