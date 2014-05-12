@@ -1,18 +1,14 @@
-class WelcomeController < ApplicationController
+class TestsController < ApplicationController
 
-def index
+def show
 
   response.cache_control.replace(:no_cache => true)
   
   respond_to do |format|
     format.html {}
     format.js {}
-  end
+  end 
 
-end
-
-def answer_submission
-  
 end
 
 

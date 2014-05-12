@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   get '/' => "welcome#index"
+  post '/tests/:id' => "tests#show"
   root 'welcome#index'
+  resources :tests
   resources :users
 
 

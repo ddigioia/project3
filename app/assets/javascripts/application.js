@@ -22,6 +22,7 @@ var correctAnswers = [];
 var wrongAnswerMessages = [];
 var rightAnswerMessages = [];
 
+
 $(document).ready(function(){
   console.log('im working');
   var userLoginButton = $('<button id="userLoginButton">User Login</button>');
@@ -37,37 +38,20 @@ $(document).ready(function(){
     console.log("user sign in");
     userLoginButton.fadeOut(200);
     nonUserButton.fadeOut(200);
+    userLoginForm();
   });
 
   nonUserButton.click(function(){
-    displayQuizCreationForm()
+    displayQuizCreationForm();
     userLoginButton.fadeOut(200);
     nonUserButton.fadeOut(200);
   });
-
-  // var firstClue = $('<p id ="firstClue">First Clue</p>');
-  // var clueBox = $('.clue');
-  // startButton.fadeIn(500);
-  // startButton.appendTo('.wrapper');
-  // startButton.click(function(){
-  //   startButton.fadeOut(800);
-    // $('.game').fadeIn(1000);
-    // firstClue.appendTo(clueBox);
-  //   displayQuizCreationForm();
-  // });
-
-
 });
 
-$(function(){ $(document).foundation(); });
 
-// function displayGameBoard(){
-//   var startButton = $('<button id= "startButton">Click Me</button>');
-//   var clueBox = $('<div class = "clue"></div>');
-//   var quizForm = $('<div class = "quiz_form"></div>');
-
-//   quizForm.appendTo(clueBox);
-// };
+function userLoginForm(){
+  
+}
 
 
 function displayQuizCreationForm(){
@@ -89,19 +73,12 @@ function displayQuizCreationForm(){
     editQuizButton.fadeOut(200);
     console.log("this should bring them to a login page");
   });
-
-};
-
-
-
-
-
-
+}
 
 
 function displayQuestionAnswerForm(){
 
-  var form = $('<form action="/" method="post" id = "createQuizForm"></form>');
+  var form = $('<form id = "createQuizForm"></form>');
   form.append('<p>First Clue</p>');
   form.append('<input type="text" class="quizCreationInput" value="question" id="question1"/>');
   form.append('<input type="text" class="quizCreationInput" value="answer" id="answer1"/>');
@@ -123,10 +100,10 @@ function displayQuestionAnswerForm(){
 
   $("#quizCreationSubmitButton").click(function(){
     submitQuiz();
+    recipientInfoForm();
     console.log('yippeeee kai yayyyy');
   });
-
-};
+}
 
 
 function submitQuiz(){
@@ -145,16 +122,49 @@ function submitQuiz(){
 
   $.ajax({
     type      :'POST',
-    url       :'/quiz',//maybe this should be /quiz/:id
+    url       :'/tests/<%=test.id%>',
     data      :quizData,
     dataType  :'json',
   }).done(function(data){
       console.log(data);
   });
-
-};
-
+}
 
 
+function recipientInfoForm(){
+  var form = $('<form id = "recipientInfoForm"></form>');
+  form.append('<p>Who should we send this beautiful quiz to?</p>');
+  form.append('<input type="text" class="recipientInfoInput" value="name" id="recipientName"/>');
+  form.append('<input type="text" class="recipientInfoInput" value="email" id="recipientEmail"/>');
+  form.append('<input type="submit" value="button" id="recipientInfoSubmitButton" />');
+  form.fadeIn(1000);
+  $('.wrapper').append(form);
+
+  $("#recipientInfoSubmitButton").click(function(){
+    console.log('yippeeee kai yayyyy');
+    submitRecipientInfo();
+  });
+}
 
 
+function submitRecipientInfo(){
+
+  var recipientData = {
+    "recipientName"     :$('#recipientName').val(),
+    "recipientEmail"    :$('#recipientEmail').val()
+  };
+
+  $.ajax({
+    type      :'POST',
+    url       :'/tests/<%=test.id%>',
+    data      :recipientData,
+    dataType  :'json',
+  }).done(function(data){
+    console.log(data);
+  });
+}
+
+
+
+
+$(function(){ $(document).foundation(); });
