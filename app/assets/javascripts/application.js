@@ -57,15 +57,16 @@ function game(clue){
   // clue.fadeIn(1000);
   clue.appendTo(clueBox);
   checkAnswer(herAnswer);
+  createGameBoard();
 };
 
 
 function createGameBoard(){
-  var form = $('<form action="/" method="post" id = "createGameBoard"></form>');
+  var form = $('<form id = "createGameBoard"></form>');
   form.append('<input type="text" class="gameInput" value="answer" id="answer1"/>');
   form.append('<input type="submit" value="button" id="quizSubmitButton" />');
   form.fadeIn(1000);
-  $('.wrapper').append(form);
+  $('.wrapper').append(form); 
 
   $('#quizSubmitButton').click(function(){
     var newClue = returnNewWord();
