@@ -60,7 +60,8 @@ function displayUserLoginForm(){
 
 
 function displayQuizCreationForm(){
-  var newQuizButton = $('<button id="newQuizButton">New Quiz!</button>');
+  var newQuizButton = $('<a href="#" class="button" id="newQuizButton" data-reveal-id="myModal">New Test</a>');
+  // var newQuizButton = $('<button id="newQuizButton">New Quiz!</button>');
   var editQuizButton = $('<button id="editQuizButton">Edit Quiz!</button>');
   newQuizButton.fadeIn(500);
   editQuizButton.fadeIn(500);
@@ -68,6 +69,7 @@ function displayQuizCreationForm(){
   $('.wrapper').append(editQuizButton);
 
   newQuizButton.click(function(){
+    renderTestTitleModal();
     newQuizButton.fadeOut(200);
     editQuizButton.fadeOut(200);
     displayQuestionAnswerForm();
@@ -80,6 +82,36 @@ function displayQuizCreationForm(){
   });
 }
 
+function renderTestTitleModal(){
+  var modalDiv = $('<div id="myModal class="reveal-modal" data-reveal>');
+  var titleInput = $('<input type="text" class="input" id="testTitle"/>');
+  var modalContent = $('<p>Enter a Test Title</p>');
+  var closeModalButton = $('<a class="close-reveal-modal">&#215;</a>');
+  var titleSubmitButton = $('<button id="titleSubmitButton">Submit</button>');
+  var testTitle = $('#testTitle').val();
+  modalContent.appendTo($('#myModal'));
+  closeModalButton.appendTo($('#myModal'));
+  titleInput.appendTo($('#myModal'));
+  titleSubmitButton.appendTo($('#myModal'));
+
+  titleSubmitButton.click(function(){
+    createNewQuiz(testTitle);
+    $('.close-reveal-modal').click();
+  });
+}
+
+function createNewQuiz(testTitle){
+   $.ajax({
+    type      :'POST',
+    url       :'/tests',
+    data      :{
+      title: testTitle
+    },
+    dataType  :'json',
+  }).done(function(data){
+      console.log(data);
+  });
+}
 
 function displayQuestionAnswerForm(){
 
