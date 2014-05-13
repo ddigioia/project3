@@ -19,105 +19,105 @@
 body {
   height: 100%;
   width: 100%;
-  background-image: url('wood_pattern.png');
+  background-image: url('mooning.png');
 
 }
 
 .sideBarLeft{
-  width:300px;
+/*  width:300px;
   height:800px;
-  display: inline-block;
+  display: inline-block;*/
   /*border: 5px solid black;*/
 }
 
 .wrapper{
-  width:800px;
+/*  width:800px;
   height:800px;
   margin:100px auto;
   border: 4px black solid;
   display: inline-block;
-  text-align: center;
+  text-align: center;*/
 }
 
 .sideBarRight{
-  width:300px;
+/*  width:300px;
   height:800px;
-  display: inline-block;
+  display: inline-block;*/
  /* border: 5px solid black;*/
 }
 
 .clue {
-  border:10px black solid;
+/*  border:10px black solid;
   width:600px;
   height:300px;
   margin:200px auto 100px auto;
   background-color: white;
   text-align: center;
-  padding:30px;
+  padding:30px;*/
 }
 
 .clue p {
-  font-size: 36px;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+/*  font-size: 36px;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;*/
 }
 
 .quiz_form{
-  width:300px;
-  margin:100px auto;
+/*  width:300px;
+  margin:100px auto;*/
 }
 
 #answer{
-  width:300px;
+/*  width:300px;*/
 }
 
 .button{
-margin-left: 75px;
+/*margin-left: 75px;*/
 
 }
 
 #startButton{
-  width:300px;
+/*  width:300px;
   height:200px;
-  margin:300px 350px;
+  margin:300px 350px;*/
 }
 
 
 #userLoginButton{
-  width:300px;
+/*  width:300px;
   height:200px;
   margin:200px 25px;
-  display: inline-block;
+  display: inline-block;*/
 }
 
 #nonUserButton{
-  display: inline-block;
+/*  display: inline-block;
   width:300px;
   height:200px;
-  margin:200px 25px;
+  margin:200px 25px;*/
 }
 
 input#question1.quizCreationInput, input#answer1.quizCreationInput, input#question2.quizCreationInput, input#answer2.quizCreationInput, input#question3.quizCreationInput, input#answer3.quizCreationInput, input#question4.quizCreationInput, input#answer4.quizCreationInput, input#question5.quizCreationInput, input#answer5.quizCreationInput{
-  width:500px;
-  margin: 10px auto;
+/*  width:500px;
+  margin: 10px auto;*/
 }
 
 #newQuizButton{
-  width:300px;
+/*  width:300px;
   height:200px;
   margin:300px 25px;
-  display: inline-block;
+  display: inline-block;*/
 }
 
 #editQuizButton{
-  display: inline-block;
+/*  display: inline-block;
   width:300px;
   height:200px;
-  margin:300px 25px;
+  margin:300px 25px;*/
 }
 
 input#password.input, input#username.input{
-  width:300px;
-  margin:100px auto;
+/*  width:300px;
+  margin:100px auto;*/
 }
 
 

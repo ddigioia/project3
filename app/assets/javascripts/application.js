@@ -54,6 +54,27 @@ function displayUserLoginForm(){
   form.append('<input type="text" class="input" value="username" id="username"/>');
   form.append('<input type="text" class="input" value="password" id="password"/>');
   form.append('<input type="submit" class="button" value="submit" id="userLoginSubmitButton" />');
+  form.append("<p>Don't have an account?</p>");
+  form.append('<input type="submit" class="button" value="sign up" id="userSignUpButton" />');
+  form.fadeIn(1000);
+  $('.wrapper').append(form);
+
+  $('#userSignUpButton').click(function(){
+    form.fadeOut(200); 
+    displayUserSignUpForm();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  });
+
+  $('.userLoginSubmitButton').click(function(){
+
+  });
+}
+
+function displayUserSignUpForm(){
+  var form = $('<form id = "userSignUpForm"></form>');
+  form.append('<input type="text" class="input" value="username" id="newUsername"/>');
+  form.append('<input type="text" class="input" value="password" id="newPassword"/>');
+  form.append('<input type="text" class="input" value="password" id="confirmNewPassword"/>');
+  form.append('<input type="submit" class="button" value="submit" id="userSignUpSubmitButton" />');
   form.fadeIn(1000);
   $('.wrapper').append(form);
 }
@@ -116,24 +137,10 @@ function createNewQuiz(testTitle){
 function displayQuestionAnswerForm(){
 
   var form = $('<form id = "createQuizForm"></form>');
-  form.append('<p>First Clue</p>');
-  form.append('<input type="text" class="quizCreationInput" value="question" id="question1"/>');
-  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer1"/>');
-  form.append('<p>Second Clue</p>');
-  form.append('<input type="text" class="quizCreationInput" value="question" id="question2"/>');
-  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer2"/>');
-  form.append('<p>Third Clue</p>');
-  form.append('<input type="text" class="quizCreationInput" value="question" id="question3"/>');
-  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer3"/>');
-  form.append('<p>Fourth Clue</p>');
-  form.append('<input type="text" class="quizCreationInput" value="question" id="question4"/>');
-  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer4"/>');
-  form.append('<p>Fifth Clue</p>');
-  form.append('<input type="text" class="quizCreationInput" value="question" id="question5"/>');
-  form.append('<input type="text" class="quizCreationInput" value="answer" id="answer5"/>');
-  form.append('<input type="submit" value="button" class="button" id="quizCreationSubmitButton" />');
+  var formWelcomeText = $('<p id="formWelcomeText">Add some questions from the left!</p>');
   form.fadeIn(1000);
   $('.wrapper').append(form);
+  $('.wrapper').append(formWelcomeText);
 
   $("#quizCreationSubmitButton").click(function(){
     submitQuiz();
