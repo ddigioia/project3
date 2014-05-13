@@ -21,6 +21,7 @@ var clueList = _.shuffle([]);
 var correctAnswers = [];
 var wrongAnswerMessages = [];
 var rightAnswerMessages = [];
+var newTest;
 
 
 $(document).ready(function(){
@@ -33,6 +34,8 @@ $(document).ready(function(){
   userLoginButton.appendTo(wrapper);
   nonUserButton.appendTo(wrapper);
   $('.game').hide();
+  // $('#leftSideBar').empty();
+  // $('#rightSideBar').empty();
 
   userLoginButton.click(function(){
     console.log("user sign in");
@@ -55,16 +58,17 @@ function displayUserLoginForm(){
   form.append('<input type="text" class="input" value="password" id="password"/>');
   form.append('<input type="submit" class="button" value="submit" id="userLoginSubmitButton" />');
   form.append("<p>Don't have an account?</p>");
-  form.append('<input type="submit" class="button" value="sign up" id="userSignUpButton" />');
+  form.append('<button class="button" id="userSignUpButton">Sign Up</button>');
   form.fadeIn(1000);
   $('.wrapper').append(form);
 
   $('#userSignUpButton').click(function(){
-    form.fadeOut(200); 
-    displayUserSignUpForm();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    form.fadeOut(200);
+    displayUserSignUpForm();
+    
   });
 
-  $('.userLoginSubmitButton').click(function(){
+  $('#userLoginSubmitButton').click(function(){
 
   });
 }
@@ -77,6 +81,11 @@ function displayUserSignUpForm(){
   form.append('<input type="submit" class="button" value="submit" id="userSignUpSubmitButton" />');
   form.fadeIn(1000);
   $('.wrapper').append(form);
+  console.log("working");
+
+  $('#userSignUpSubmitButton').click(function(){
+
+  });
 }
 
 
@@ -109,28 +118,30 @@ function renderTestTitleModal(){
   var modalContent = $('<p>Enter a Test Title</p>');
   var closeModalButton = $('<a class="close-reveal-modal">&#215;</a>');
   var titleSubmitButton = $('<button id="titleSubmitButton">Submit</button>');
-  var testTitle = $('#testTitle').val();
   modalContent.appendTo($('#myModal'));
   closeModalButton.appendTo($('#myModal'));
   titleInput.appendTo($('#myModal'));
   titleSubmitButton.appendTo($('#myModal'));
 
   titleSubmitButton.click(function(){
+    var testTitle = $('#testTitle').val();
     createNewQuiz(testTitle);
+    $('#currentTestTitle').text(testTitle);
     $('.close-reveal-modal').click();
   });
 }
 
 function createNewQuiz(testTitle){
-   $.ajax({
+  $.ajax({
     type      :'POST',
     url       :'/tests',
     data      :{
       title: testTitle
     },
-    dataType  :'json',
-  }).done(function(data){
-      console.log(data);
+    dataType  :'json'
+  }).done(function(createdTest){
+      console.log(createdTest);
+      newTest = createdTest;
   });
 }
 
@@ -138,30 +149,37 @@ function displayQuestionAnswerForm(){
 
   var form = $('<form id = "createQuizForm"></form>');
   var formWelcomeText = $('<p id="formWelcomeText">Add some questions from the left!</p>');
+  var textQuestion = $('#textQuestionLink');
+  var pictureQuestion = $('#pictureQuestionLink');
+  var someOtherQuestion = $('#someOtherQuestionLink');
+
   form.fadeIn(1000);
   $('.wrapper').append(form);
   $('.wrapper').append(formWelcomeText);
 
-  $("#quizCreationSubmitButton").click(function(){
-    submitQuiz();
-    recipientInfoForm();
-    console.log('yippeeee kai yayyyy');
+  textQuestion.click(function(){
+    console.log("iubovisbvalasdhbv");
+    form.append('<p>Enter a Question and Answer</p>');
+    form.append('<input type="text" class="createQuestionInput" value="question" id="createQuestionInput"/>');
+    form.append('<input type="text" class="createAnswerInput" value="answer" id="createAnswerInput"/>');
+    form.append('<button id="submitQuestionButton">Add Question</button>');
+
+      $('')
   });
+
+  // $("#quizCreationSubmitButton").click(function(){
+  //   submitQuiz();
+  //   recipientInfoForm();
+  //   console.log('yippeeee kai yayyyy');
+  // });
+
 }
 
 
 function submitQuiz(){
   var quizData = {
     'question1'     :$('#question1').val(),
-    'answer1'       :$('#answer1').val(),
-    'question2'     :$('#question2').val(),
-    'answer2'       :$('#answer2').val(),
-    'question3'     :$('#question3').val(),
-    'answer3'       :$('#answer3').val(),
-    'question4'     :$('#question4').val(),
-    'answer4'       :$('#answer4').val(),
-    'question5'     :$('#question5').val(),
-    'answer5'       :$('#answer5').val()
+    'answer1'       :$('#answer1').val()
   };
 
   $.ajax({
@@ -207,16 +225,6 @@ function submitRecipientInfo(){
     console.log(data);
   });
 }
-
-// searchMovies: function(){
-//     var searchInput = this.$('#movie_title').val();
-//     var result = $.ajax({
-//       url: 'http://www.omdbapi.com/?t=' + searchInput,
-//       method: 'get'
-//     }).done(function(data){
-//       console.log(data);
-//     });
-//   }
 
 function tweetGeneratedLink(){
   var generatedLink = $('#generatedLink').val();
