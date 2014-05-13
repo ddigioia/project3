@@ -11,6 +11,13 @@ def show
 
 end
 
+def create
+
+ @test = Test.create(
+  ##we have to catch the ajax request here to persist it
+  )
+ 
+end
 
 
 end

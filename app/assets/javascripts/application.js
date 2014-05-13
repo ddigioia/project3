@@ -38,7 +38,7 @@ $(document).ready(function(){
     console.log("user sign in");
     userLoginButton.fadeOut(200);
     nonUserButton.fadeOut(200);
-    userLoginForm();
+    displayUserLoginForm();
   });
 
   nonUserButton.click(function(){
@@ -49,8 +49,13 @@ $(document).ready(function(){
 });
 
 
-function userLoginForm(){
-  
+function displayUserLoginForm(){
+  var form = $('<form id = "userSignInForm"></form>');
+  form.append('<input type="text" class="input" value="username" id="username"/>');
+  form.append('<input type="text" class="input" value="password" id="password"/>');
+  form.append('<input type="submit" class="button" value="submit" id="userLoginSubmitButton" />');
+  form.fadeIn(1000);
+  $('.wrapper').append(form);
 }
 
 
@@ -94,7 +99,7 @@ function displayQuestionAnswerForm(){
   form.append('<p>Fifth Clue</p>');
   form.append('<input type="text" class="quizCreationInput" value="question" id="question5"/>');
   form.append('<input type="text" class="quizCreationInput" value="answer" id="answer5"/>');
-  form.append('<input type="submit" value="button" id="quizCreationSubmitButton" />');
+  form.append('<input type="submit" value="button" class="button" id="quizCreationSubmitButton" />');
   form.fadeIn(1000);
   $('.wrapper').append(form);
 
@@ -122,7 +127,7 @@ function submitQuiz(){
 
   $.ajax({
     type      :'POST',
-    url       :'/tests/<%=test.id%>',
+    url       :'/tests',
     data      :quizData,
     dataType  :'json',
   }).done(function(data){
@@ -156,7 +161,7 @@ function submitRecipientInfo(){
 
   $.ajax({
     type      :'POST',
-    url       :'/tests/<%=test.id%>',
+    url       :'/tests',
     data      :recipientData,
     dataType  :'json',
   }).done(function(data){
@@ -164,6 +169,26 @@ function submitRecipientInfo(){
   });
 }
 
+// searchMovies: function(){
+//     var searchInput = this.$('#movie_title').val();
+//     var result = $.ajax({
+//       url: 'http://www.omdbapi.com/?t=' + searchInput,
+//       method: 'get'
+//     }).done(function(data){
+//       console.log(data);
+//     });
+//   }
+
+function tweetGeneratedLink(){
+  var generatedLink = $('#generatedLink').val();
+  var tweetComment = $('#tweetComment').val();
+  var result = $.ajax({
+    url: 'https://api.twitter.com/1.1/' + generatedLink + tweetComment + '/update.json',
+    method: 'post'
+  }).done(function(data){
+    console.log(data);
+  });
+}
 
 
 
