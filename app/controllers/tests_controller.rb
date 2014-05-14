@@ -12,8 +12,16 @@ def show
 end
 
 def create
- @test = Test.create(title: params[:title])
- render json: @test
+
+  response.cache_control.replace(:no_cache => true)
+
+  @test = Test.create(title: params[:title])
+  render json: @test
+end
+
+def updateTest
+
+  
 end
 
 

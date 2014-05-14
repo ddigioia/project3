@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :tests
   resources :users
+  resources :questions
+  post "/tests/:id/updateTest", to: "tests#updateTest"
 
 
   
