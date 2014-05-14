@@ -1,18 +1,13 @@
 class TestsController < ApplicationController
 
 def show
-
   response.cache_control.replace(:no_cache => true)
-  
-  respond_to do |format|
-    format.html {}
-    format.js {}
-  end 
 
+  @test = Test.find(params[:id])
+  render json: @test.questions
 end
 
 def create
-
   response.cache_control.replace(:no_cache => true)
 
   @test = Test.create(title: params[:title])
@@ -20,9 +15,12 @@ def create
 end
 
 def updateTest
-
-  
 end
+
+# def tryTest
+#   @questions = Question.where(test_id: params[:id])
+#   render json: @questions
+# end
 
 
 end

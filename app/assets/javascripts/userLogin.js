@@ -8,13 +8,16 @@ function displayUserLoginForm(){
   form.fadeIn(1000);
   $('.wrapper').append(form);
 
-  $('#userSignUpButton').click(function(){
+
+  $('#userSignUpButton').click(function(event){
+    event.preventDefault();
     form.fadeOut(200);
     displayUserSignUpForm();
     
   });
 
-  $('#userLoginSubmitButton').click(function(){
+  $('#userLoginSubmitButton').click(function(event){
+    event.preventDefault();
 
   });
 }
@@ -27,9 +30,9 @@ function displayUserSignUpForm(){
   form.append('<input type="submit" class="button" value="submit" id="userSignUpSubmitButton" />');
   $('.wrapper').append(form);
 
-  
-  $('#userSignUpSubmitButton').click(function(){
-    console.log("working");
+  $('#userSignUpSubmitButton').click(function(event){
+    event.preventDefault();
+    console.log("not working");
     debugger
   });
 }

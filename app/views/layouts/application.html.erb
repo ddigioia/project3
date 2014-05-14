@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Happy Birthday!" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Riddlr?" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -125,7 +125,7 @@
                 </div>
  
                 <div class="large-9 columns">
-                  <h5><a href="#" id="textQuestionLink">Text Question</a></h5>
+                  <h5><button id="textQuestionLink">Text Question</button></h5>
                   <h6 class="subheader show-for-small">Doors at 00:00pm</h6>
                 </div>
               </div><hr>
@@ -139,7 +139,7 @@
                   </div>
  
                   <div class="large-9 columns">
-                    <h5 class="subheader"><a href="#" id="pictureQuestionLink">Picture Question</a></h5>
+                    <h5 class="subheader"><button id="pictureQuestionLink">Picture Question</button></h5>
                   </div>
                 </div><hr>
  
@@ -149,7 +149,7 @@
                   </div>
  
                   <div class="large-9 columns">
-                    <h5 class="subheader"><a href="#" id="someOtherQuestionLink">Some Other Question</a></h5>
+                    <h5 class="subheader"><button id="someOtherQuestionLink">Some Other Question</button></h5>
                   </div>
                 </div>
               </div>
@@ -184,7 +184,8 @@
  
              
  
-              <a href="#" class="right">Go To Test »</a>
+              <button id="sendTestButton">Send Test Out! »</button>
+              <button id="tryTestButton">Try Out Your Test! »</button>
  
             </div>
  
