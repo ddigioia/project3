@@ -49,3 +49,9 @@ body {
 #sendTestButton {
   float:left;
 }
+
+#testContainer{
+  height: 200px;
+  width:300px;
+  border:10px black solid;
+}
