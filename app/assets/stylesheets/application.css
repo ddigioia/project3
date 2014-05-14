@@ -19,47 +19,18 @@
 body {
   height: 100%;
   width: 100%;
-  background-image: url('wood_pattern.png');
+  background-image: url('mooning.png');
 
 }
 
 .wrapper{
-  width:1000px;
-  height:800px;
-  margin:100px auto;
+  height:500px;
 }
 
-.clue {
-  border:10px black solid;
-  width:600px;
-  height:300px;
-  margin:200px auto 100px auto;
-  background-color: white;
-  text-align: center;
-  padding:30px;
+#centerContainer.large-6.small-6.columns{
+  margin:0px auto;
 }
 
-.clue p {
-  font-size: 36px;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-}
-
-.quiz_form{
-  width:300px;
-  margin:100px auto;
-}
-
-#answer{
-  width:300px;
-}
-
-.button{
-margin-left: 75px;
-
-}
-
-#startButton{
-  width:300px;
-  height:200px;
-  margin:300px 350px;
+#currentTestPanel {
+  height: 400px;
 }

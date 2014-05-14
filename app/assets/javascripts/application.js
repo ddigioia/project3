@@ -17,23 +17,102 @@
 //= require underscore
 //= require_tree .
 
+var clueList = _.shuffle([]);
+var correctAnswers = [];
+var wrongAnswerMessages = [];
+var rightAnswerMessages = [];
+var currentTest;
+
+
 $(document).ready(function(){
   console.log('im working');
-  $('.game').hide();
-  
-  var startButton = $('<button id= "startButton">Click Me</button>');
-  var firstClue = $('<p id ="firstClue">First Clue</p>');
-  var clueBox = $('.clue');
-  startButton.fadeIn(500);
-  startButton.appendTo('.wrapper');
+  var userLoginButton = $('<button id="userLoginButton">User Login</button>');
+  var nonUserButton = $('<button id="nonUserButton">Who needs a user login anyway?</button>');
+  var wrapper = $('.wrapper');
+  userLoginButton.fadeIn(500);
+  nonUserButton.fadeIn(500);
+  userLoginButton.appendTo(wrapper);
+  nonUserButton.appendTo(wrapper);
+  // $('.game').hide();
+  $('#leftSideBar').fadeTo(10, 0);
+  $('#rightSideBar').fadeTo(10, 0);
 
-  startButton.click(function(){
-    startButton.fadeOut(800);
-    $('.game').fadeIn(1000);
-    firstClue.appendTo(clueBox);
+  userLoginButton.click(function(){
+    console.log("user sign in");
+    userLoginButton.fadeOut(200);
+    nonUserButton.fadeOut(200);
+    displayUserLoginForm();
   });
 
+  nonUserButton.click(function(){
+    displayQuizCreationForm();
+    userLoginButton.fadeOut(200);
+    nonUserButton.fadeOut(200);
+  });
 });
+
+// function submitQuiz(){
+//   var quizData = {
+//     'question1'     :$('#question1').val(),
+//     'answer1'       :$('#answer1').val()
+//   };
+
+//   $.ajax({
+//     type      :'POST',
+//     url       :'/tests',
+//     data      :quizData,
+//     dataType  :'json',
+//   }).done(function(data){
+//       console.log(data);
+//   });
+// }
+
+
+function recipientInfoForm(){
+  var form = $('<form id = "recipientInfoForm"></form>');
+  form.append('<p>Who should we send this beautiful quiz to?</p>');
+  form.append('<input type="text" class="recipientInfoInput" value="name" id="recipientName"/>');
+  form.append('<input type="text" class="recipientInfoInput" value="email" id="recipientEmail"/>');
+  form.append('<input type="submit" value="button" id="recipientInfoSubmitButton" />');
+  form.fadeIn(1000);
+  $('.wrapper').append(form);
+
+  $("#recipientInfoSubmitButton").click(function(){
+    console.log('yippeeee kai yayyyy');
+    submitRecipientInfo();
+  });
+}
+
+
+function submitRecipientInfo(){
+
+  var recipientData = {
+    "recipientName"     :$('#recipientName').val(),
+    "recipientEmail"    :$('#recipientEmail').val()
+  };
+
+  $.ajax({
+    type      :'POST',
+    url       :'/tests',
+    data      :recipientData,
+    dataType  :'json',
+  }).done(function(data){
+    console.log(data);
+  });
+}
+
+function tweetGeneratedLink(){
+  var generatedLink = $('#generatedLink').val();
+  var tweetComment = $('#tweetComment').val();
+  var result = $.ajax({
+    url: 'https://api.twitter.com/1.1/' + generatedLink + tweetComment + '/update.json',
+    method: 'post'
+  }).done(function(data){
+    console.log(data);
+  });
+}
+
+
 
 $(function(){ $(document).foundation(); });
 
