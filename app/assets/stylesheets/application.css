@@ -25,6 +25,7 @@ body {
 
 .wrapper{
   height:500px;
+  text-align: center;
 }
 
 #centerContainer.large-6.small-6.columns{
@@ -33,4 +34,24 @@ body {
 
 #currentTestPanel {
   height: 400px;
+  overflow: scroll;
+}
+
+#leftSideBar{
+  margin-left:-100px;
+  margin-right: 100px;
+}
+
+#rightSideBar{
+  margin-right:-100px;
+  margin-left: 100px;
+}
+#sendTestButton {
+  float:left;
+}
+
+#testContainer{
+  height: 200px;
+  width:300px;
+  border:10px black solid;
 }

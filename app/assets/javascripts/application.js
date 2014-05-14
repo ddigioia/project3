@@ -68,49 +68,7 @@ $(document).ready(function(){
 // }
 
 
-function recipientInfoForm(){
-  var form = $('<form id = "recipientInfoForm"></form>');
-  form.append('<p>Who should we send this beautiful quiz to?</p>');
-  form.append('<input type="text" class="recipientInfoInput" value="name" id="recipientName"/>');
-  form.append('<input type="text" class="recipientInfoInput" value="email" id="recipientEmail"/>');
-  form.append('<input type="submit" value="button" id="recipientInfoSubmitButton" />');
-  form.fadeIn(1000);
-  $('.wrapper').append(form);
 
-  $("#recipientInfoSubmitButton").click(function(){
-    console.log('yippeeee kai yayyyy');
-    submitRecipientInfo();
-  });
-}
-
-
-function submitRecipientInfo(){
-
-  var recipientData = {
-    "recipientName"     :$('#recipientName').val(),
-    "recipientEmail"    :$('#recipientEmail').val()
-  };
-
-  $.ajax({
-    type      :'POST',
-    url       :'/tests',
-    data      :recipientData,
-    dataType  :'json',
-  }).done(function(data){
-    console.log(data);
-  });
-}
-
-function tweetGeneratedLink(){
-  var generatedLink = $('#generatedLink').val();
-  var tweetComment = $('#tweetComment').val();
-  var result = $.ajax({
-    url: 'https://api.twitter.com/1.1/' + generatedLink + tweetComment + '/update.json',
-    method: 'post'
-  }).done(function(data){
-    console.log(data);
-  });
-}
 
 
 
