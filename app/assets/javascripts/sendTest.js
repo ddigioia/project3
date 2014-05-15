@@ -17,21 +17,62 @@ function recipientInfoForm(){
   });
 }
 
+function renderSendTestModal(){
+  var modalDiv = $('<div id="sendTestModal class="reveal-modal" data-reveal>');
+  var recipientEmail = $('<input type="text" class="input" id="recipientEmail"/>');
+  var senderEmail = $('<input type="text" class="input" id="senderEmail"/>');
+  var senderMessage = $('<input type="text" class="input" id="senderMessage"/>');
+  var recipientEmailParagraph = $('<p>Who shall we send this to?</p>');
+  var senderEmailParagraph = $('<p>Would you like us to let you know how they did?</p>');
+  var senderMessageParagraph = $('<p>Special Message?</p>');
+  var closeModalButton = $('<a class="close-reveal-modal">&#215;</a>');
+  var sendTestInputButton = $('<button id="sendTestInputButton">Send!</button>');
 
-function submitRecipientInfo(){
+  recipientEmailParagraph.appendTo($('#sendTestModal'));
+  recipientEmail.appendTo($('#sendTestModal'));
 
-  var testData = {
-    "recipientName"     :$('#recipientName').val(),
-    "recipientEmail"    :$('#recipientEmail').val()
-  };
+  senderMessageParagraph.appendTo($('#sendTestModal'));
+  senderMessage.appendTo($('#sendTestModal'));
 
+  senderEmailParagraph.appendTo($('#sendTestModal'));
+  senderEmail.appendTo($('#sendTestModal'));
+
+  closeModalButton.appendTo($('#sendTestModal'));
+  sendTestInputButton.appendTo($('#sendTestModal'));
+
+  sendTestInputButton.click(function(){
+    var recipientEmail = $('#recipientEmail').val();
+    sendTest(recipientEmail);
+    $('#sendTestModal').empty();
+    // createNewQuiz(testTitle);
+    // $('#currentTestTitle').text(testTitle);
+    $('.close-reveal-modal').click();
+  });
+
+}
+
+function sendTest(recipientEmail){
+
+  // var testData = {
+  //   "recipientEmail"    :recipientEmail
+  // };
+
+  console.log('comon now');
   $.ajax({
     type      :'POST',
-    url       :'/tests',
-    data      :testData,
-    dataType  :'json',
+    url       :'/tests/sendTest',
+    data      :{
+      recipientEmail: recipientEmail
+    },
+    success: function(data){
+      console.log("Success: " + data);
+    },
+    error: function(data){
+      console.log("Error: " + data);
+    },
+    dataType  :'json'
   }).done(function(data){
-    console.log(data);
+    console.log("waat");
   });
 }
 
@@ -45,3 +86,4 @@ function tweetGeneratedLink(){
     console.log(data);
   });
 }
+

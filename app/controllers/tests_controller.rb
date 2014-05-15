@@ -22,5 +22,10 @@ end
 #   render json: @questions
 # end
 
+def sendTest
+  @recipientEmail = params[:recipientEmail]
+  UserMailer.send_email(@recipientEmail).deliver
+  render json: @recipientEmail
+end
 
 end

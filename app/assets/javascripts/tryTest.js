@@ -1,9 +1,15 @@
 var currentTestQuestion;
 var currentTestAnswer;
+var currentTestObj;
+var singleTestObj;
+var counter = 0;
+
+
 
 function tryTest(){
-  newQuestionAndAnswer();
-  displayTest();
+  
+  var newQuestionObj = newQuestionAndAnswer();
+  displayTest(newQuestionObj);
 
   // for(var i = 0; i < currentTestObj.length; i++){
   //   currentTestQuestions.push(currentTestObj[i].question_content);
@@ -18,7 +24,6 @@ function tryTest(){
 
 
 function getCurrentTest() {
-  var currentTestObj;
 
   $.ajax({
     url: '/tests/' + currentTest.id,
@@ -29,30 +34,62 @@ function getCurrentTest() {
       currentTestObj = data;
     }
   });
-  return currentTestObj;
+  tryTest();
+ 
 }
 
 function newQuestionAndAnswer(){
-  var currentTestObj = getCurrentTest();
-  var shuffledTestEl = _.shuffle(currentTestObj).pop();
-  currentTestAnswer = shuffledTestEl.answer;
-  currentTestQuestion = shuffledTestEl.question_content;
-  console.log(shuffledTestEl);
-  console.log(currentTestAnswer);
-  console.log(currentTestQuestion);
+   console.log(currentTestObj.length);
+   console.log(counter);
+  if(counter == currentTestObj.length) {
+    displayTestFinished();
+  } else {
+    counter++;
+    return currentTestObj[counter - 1];
+  }
+
 }
 
-function displayTest(){
-  var testContainer = $('<div class="large-12 columns" ></div>');
-  var testQuestion = $('<p>' + currentTestQuestion + '</p>');
+
+function displayTest(testObj){
+  var testContainer = $('<div class="large-12 columns" id="testContainer" ></div>');
+  var testQuestion = $('<p>' + testObj.question_content + '</p>');
   var testInput = $('<input type="text" class="createAnswerInput" value="" id="takeTestAnswerInput"/>');
   var submitButton = $('<button id="takeTestAnswerSubmitButton">Are You Sure?</button>');
   testQuestion.appendTo(testContainer);
   testInput.appendTo(testContainer);
+  submitButton.appendTo(testContainer);
+  testContainer.fadeIn(300);
   testContainer.appendTo($('.wrapper'));
-  submitButton.appendTo($('.wrapper'));
+  currentTestAnswer = testObj.answer;
+  singleTestObj = testObj;
 
+  
   submitButton.click(function(){
-    console.log("WOOOOWZERS");
-  })
+    var _testInput = $('#takeTestAnswerInput').val();
+    checkAnswer(_testInput, currentTestAnswer);
+    testContainer.remove();
+    
+  });
 }
+
+function displayTestFinished(){
+  var testFinishedContainer = $('<div class="large-12 columns" id="testFinishedContainer">All done</div>');
+  testFinishedContainer.appendTo($('.wrapper'));
+}
+
+function checkAnswer(testInput, testAnswer){
+  if(testInput == testAnswer){
+    $('#testContainer').remove();
+    alert("You got that right!");
+    questionObj = newQuestionAndAnswer();
+    displayTest(questionObj);
+    $('#takeTestAnswerInput').val('');
+    submitButton.unbind();
+  } else {
+    alert("WRONG");
+    displayTest(singleTestObj);
+  }
+}
+
+

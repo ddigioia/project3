@@ -75,7 +75,7 @@ function displayQuestionAnswerForm(){
   textQuestionButton.click(function(){
     $('#createQuizForm').empty();
     console.log("text question clicked");
-    console.log(currentTest.id);
+    // console.log(currentTest.id);
     form.append('<p>Enter a Question and Answer</p>');
     form.append('<input type="text" class="createQuestionInput" value="textQuestion" id="createQuestionInput"/>');
     form.append('<input type="text" class="createAnswerInput" value="answer" id="createAnswerInput"/>');
@@ -157,18 +157,18 @@ function displayQuestionAnswerForm(){
   
   $('#sendTestButton').click(function(){
     console.log("something");
-    $('#leftSideBar').fadeTo(200, 0);
-    $('#rightSideBar').fadeTo(200, 0);
+    // $('#leftSideBar').fadeTo(200, 0);
+    // $('#rightSideBar').fadeTo(200, 0);
     $('#createQuizForm').fadeOut(200);
-    recipientInfoForm();
+    renderSendTestModal();
   });
 
   $('#tryTestButton').click(function(){
     console.log("something");
-    $('#leftSideBar').fadeTo(200, 0);
-    $('#rightSideBar').fadeTo(200, 0);
+    // $('#leftSideBar').fadeTo(200, 0);
+    // $('#rightSideBar').fadeTo(200, 0);
     $('#createQuizForm').fadeOut(200);
-    tryTest();
+    getCurrentTest();
   });
 
 }
