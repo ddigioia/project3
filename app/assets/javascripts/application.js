@@ -25,7 +25,6 @@ var currentTest;
 
 
 $(document).ready(function(){
-  console.log('im working');
   var userLoginButton = $('<button id="userLoginButton">User Login</button>');
   var nonUserButton = $('<button id="nonUserButton">Who needs a user login anyway?</button>');
   var wrapper = $('.wrapper');

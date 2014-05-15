@@ -17,17 +17,50 @@ function recipientInfoForm(){
   });
 }
 
+function renderSendTestModal(){
+  var modalDiv = $('<div id="sendTestModal class="reveal-modal" data-reveal>');
+  var recipientEmail = $('<input type="text" class="input" id="recipientEmail"/>');
+  var senderEmail = $('<input type="text" class="input" id="senderEmail"/>');
+  var senderMessage = $('<input type="text" class="input" id="senderMessage"/>');
+  var recipientEmailParagraph = $('<p>Who shall we send this to?</p>');
+  var senderEmailParagraph = $('<p>Would you like us to let you know how they did?</p>');
+  var senderMessageParagraph = $('<p>Special Message?</p>');
+  var closeModalButton = $('<a class="close-reveal-modal">&#215;</a>');
+  var sendTestInputButton = $('<button id="sendTestInputButton">Send!</button>');
 
-function submitRecipientInfo(){
+  recipientEmailParagraph.appendTo($('#sendTestModal'));
+  recipientEmail.appendTo($('#sendTestModal'));
+
+  senderMessageParagraph.appendTo($('#sendTestModal'));
+  senderMessage.appendTo($('#sendTestModal'));
+
+  senderEmailParagraph.appendTo($('#sendTestModal'));
+  senderEmail.appendTo($('#sendTestModal'));
+
+  closeModalButton.appendTo($('#sendTestModal'));
+  sendTestInputButton.appendTo($('#sendTestModal'));
+
+  sendTestInputButton.click(function(){
+    var recipientEmail = $('#recipientEmail').val();
+    // sendTest(recipientEmail);
+    console.log(recipientEmail);
+    $('#sendTestModal').empty();
+    // createNewQuiz(testTitle);
+    // $('#currentTestTitle').text(testTitle);
+    $('.close-reveal-modal').click();
+  });
+
+}
+
+function sendTest(recipientEmail){
 
   var testData = {
-    "recipientName"     :$('#recipientName').val(),
-    "recipientEmail"    :$('#recipientEmail').val()
+    "recipientEmail"    :recipientEmail
   };
 
   $.ajax({
     type      :'POST',
-    url       :'/tests',
+    url       :'/',
     data      :testData,
     dataType  :'json',
   }).done(function(data){
@@ -45,3 +78,4 @@ function tweetGeneratedLink(){
     console.log(data);
   });
 }
+
