@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
-  get '/' => "welcome#index"
-  post '/tests/:id' => "tests#show"
+  get '/' => 'welcome#index'
+  post '/tests/sendTest' => 'tests#sendTest'
+  post '/tests/:id' => 'tests#show'
   root 'welcome#index'
   resources :tests
   resources :users
   resources :questions
-  post "/tests/:id/updateTest", to: "tests#updateTest"
+  post '/tests/:id/updateTest' => 'tests#updateTest'
+  
 
 
   

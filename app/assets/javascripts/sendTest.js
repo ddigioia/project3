@@ -42,8 +42,7 @@ function renderSendTestModal(){
 
   sendTestInputButton.click(function(){
     var recipientEmail = $('#recipientEmail').val();
-    // sendTest(recipientEmail);
-    console.log(recipientEmail);
+    sendTest(recipientEmail);
     $('#sendTestModal').empty();
     // createNewQuiz(testTitle);
     // $('#currentTestTitle').text(testTitle);
@@ -54,17 +53,26 @@ function renderSendTestModal(){
 
 function sendTest(recipientEmail){
 
-  var testData = {
-    "recipientEmail"    :recipientEmail
-  };
+  // var testData = {
+  //   "recipientEmail"    :recipientEmail
+  // };
 
+  console.log('comon now');
   $.ajax({
     type      :'POST',
-    url       :'/',
-    data      :testData,
-    dataType  :'json',
+    url       :'/tests/sendTest',
+    data      :{
+      recipientEmail: recipientEmail
+    },
+    success: function(data){
+      console.log("Success: " + data);
+    },
+    error: function(data){
+      console.log("Error: " + data);
+    },
+    dataType  :'json'
   }).done(function(data){
-    console.log(data);
+    console.log("waat");
   });
 }
 

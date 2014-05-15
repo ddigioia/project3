@@ -75,7 +75,7 @@ function displayQuestionAnswerForm(){
   textQuestionButton.click(function(){
     $('#createQuizForm').empty();
     console.log("text question clicked");
-    console.log(currentTest.id);
+    // console.log(currentTest.id);
     form.append('<p>Enter a Question and Answer</p>');
     form.append('<input type="text" class="createQuestionInput" value="textQuestion" id="createQuestionInput"/>');
     form.append('<input type="text" class="createAnswerInput" value="answer" id="createAnswerInput"/>');
