@@ -26,11 +26,11 @@ var currentTest;
 
 $(document).ready(function(){
   var userLoginButton = $('<button id="userLoginButton">User Login</button>');
-  var nonUserButton = $('<button id="nonUserButton">Who needs a user login anyway?</button>');
+  var nonUserButton = $('<button id="nonUserButton">Shall We Begin?</button>');
   var wrapper = $('.wrapper');
-  userLoginButton.fadeIn(500);
+  // userLoginButton.fadeIn(500);
   nonUserButton.fadeIn(500);
-  userLoginButton.appendTo(wrapper);
+  // userLoginButton.appendTo(wrapper);
   nonUserButton.appendTo(wrapper);
   // $('.game').hide();
   $('#leftSideBar').fadeTo(10, 0);
@@ -44,9 +44,19 @@ $(document).ready(function(){
   });
 
   nonUserButton.click(function(){
-    displayQuizCreationForm();
-    userLoginButton.fadeOut(200);
-    nonUserButton.fadeOut(200);
+
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+
+    if(id === ""){
+      displayQuizCreationForm();
+      userLoginButton.fadeOut(200);
+      nonUserButton.fadeOut(200);
+    } else {
+      console.log("WOOWOWOOWOWOWO");
+      nonUserButton.fadeOut(100);
+      getCurrentTestFromURL(id);
+    }
   });
 });
 

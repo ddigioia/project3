@@ -21,6 +21,21 @@ function tryTest(){
   // console.log(currentTestAnswers);
 }
 
+function getCurrentTestFromURL(id) {
+
+  $.ajax({
+    url: '/tests/' + id,
+    method: 'get',
+    dataType: 'json',
+    async: false,
+    success: function(data){
+      currentTestObj = data;
+    }
+  });
+  tryTest();
+ 
+}
+
 
 
 function getCurrentTest() {
@@ -39,7 +54,7 @@ function getCurrentTest() {
 }
 
 function newQuestionAndAnswer(){
-   console.log(currentTestObj.length);
+   
    console.log(counter);
   if(counter == currentTestObj.length) {
     displayTestFinished();
@@ -56,10 +71,11 @@ function displayTest(testObj){
   var testQuestion = $('<p>' + testObj.question_content + '</p>');
   var testInput = $('<input type="text" class="createAnswerInput" value="" id="takeTestAnswerInput"/>');
   var submitButton = $('<button id="takeTestAnswerSubmitButton">Are You Sure?</button>');
+  //this is where the image should be appended
   testQuestion.appendTo(testContainer);
   testInput.appendTo(testContainer);
   submitButton.appendTo(testContainer);
-  testContainer.fadeIn(300);
+  testContainer.fadeIn(1000);
   testContainer.appendTo($('.wrapper'));
   currentTestAnswer = testObj.answer;
   singleTestObj = testObj;

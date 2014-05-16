@@ -34,7 +34,7 @@ gem 'spring',        group: :development
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'dotenv-rails', :groups => [:development, :test]
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
@@ -45,7 +45,8 @@ end
 gem "capybara"
 gem "rspec-rails"
 gem 'foundation-rails'
-
+gem 'paperclip', github: 'thoughtbot/paperclip'
+# gem "paperclip", "~> 4.1"
 gem "devise"
 
 gem "pry-rails"
