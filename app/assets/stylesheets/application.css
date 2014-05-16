@@ -50,6 +50,12 @@ body {
   float:left;
 }
 
+#dropBox {
+  border: 3px dashed black;
+  width: 200px;
+  height: 100px;      
+}
+
 
 
 #testFinishedContainer{
